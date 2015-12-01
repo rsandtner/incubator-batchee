@@ -13,17 +13,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<job id="jsefa-csv-writer-header" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
-    <step id="step1">
-        <chunk>
-            <reader ref="org.apache.batchee.jsefa.JSefaCsvWriterHeaderTest$RecordReader" />
-            <writer ref="jsefaCsvWriter">
-                <properties>
-                    <property name="file" value="#{jobParameters['output']}"/>
-                    <property name="objectTypes" value="org.apache.batchee.jsefa.bean.Record"/>
-                    <property name="header" value="VALUE1;VALUE2" />
-                </properties>
-            </writer>
-        </chunk>
-    </step>
+<job id="jsefa-csv-writer-header-fromFieldsMoreObjects" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <step id="step1">
+    <chunk>
+      <reader ref="org.apache.batchee.jsefa.JSefaCsvWriterHeaderTest$MoreObjectReader" />
+      <writer ref="jsefaCsvWriter">
+        <properties>
+          <property name="file" value="#{jobParameters['output']}"/>
+          <property name="objectTypes" value="org.apache.batchee.jsefa.bean.Person,org.apache.batchee.jsefa.bean.Address" />
+          <property name="writeHeader" value="true" />
+        </properties>
+      </writer>
+    </chunk>
+  </step>
 </job>

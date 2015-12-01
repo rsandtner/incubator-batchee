@@ -20,17 +20,17 @@ import net.sf.jsefa.csv.annotation.CsvDataType;
 import net.sf.jsefa.csv.annotation.CsvField;
 
 @CsvDataType
-public class PersonWithAdress extends Person {
+public class PersonWithAddress extends Person {
 
     @CsvField(pos = 3)
     private Address address;
 
 
-    private PersonWithAdress() {
+    private PersonWithAddress() {
         this(null, null, null);
     }
 
-    public PersonWithAdress(String firstName, String lastName, Address address) {
+    public PersonWithAddress(String firstName, String lastName, Address address) {
         super(firstName, lastName);
         this.address = address;
     }

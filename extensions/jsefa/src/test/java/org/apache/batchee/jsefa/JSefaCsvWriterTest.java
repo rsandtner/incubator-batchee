@@ -18,12 +18,11 @@ package org.apache.batchee.jsefa;
 
 import org.apache.batchee.jsefa.bean.Address;
 import org.apache.batchee.jsefa.bean.Person;
-import org.apache.batchee.jsefa.bean.PersonWithAdress;
+import org.apache.batchee.jsefa.bean.PersonWithAddress;
 import org.apache.batchee.jsefa.bean.Record;
 import org.apache.batchee.jsefa.util.CsvUtil;
 import org.apache.batchee.jsefa.util.IOs;
 import org.apache.batchee.util.Batches;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import javax.batch.api.chunk.AbstractItemReader;
@@ -155,9 +154,9 @@ public class JSefaCsvWriterTest {
                 return null;
             }
 
-            PersonWithAdress item = new PersonWithAdress("firstName_" + count,
-                                                         "lastName_" + count,
-                                                         new Address("street_" + count,
+            PersonWithAddress item = new PersonWithAddress("firstName_" + count,
+                                                           "lastName_" + count,
+                                                           new Address("street_" + count,
                                                                      "zip_" + count,
                                                                      "city_" + count));
             STORAGE.add(item);

@@ -20,7 +20,7 @@
       <writer ref="jsefaCsvWriter">
         <properties>
           <property name="file" value="#{jobParameters['output']}"/>
-          <property name="objectTypes" value="org.apache.batchee.jsefa.bean.PersonWithAdress" />
+          <property name="objectTypes" value="org.apache.batchee.jsefa.bean.PersonWithAddress" />
         </properties>
       </writer>
     </chunk>
