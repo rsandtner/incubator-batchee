@@ -80,7 +80,19 @@ public class JSefaCsvMapping {
                 calculateHeaders(field.getType(), allHeaders, fieldAnnotation.pos());
             } else {
 
-                String previousField = typeHeaders.put(fieldAnnotation.pos(), field.getName());
+                String header = null;
+
+                Header headerAnnotation = field.getAnnotation(Header.class);
+                if (headerAnnotation != null) {
+                    header = headerAnnotation.value();
+                }
+
+                // use field.getName() as default
+                if (header == null || header.isEmpty()) {
+                    header = field.getName();
+                }
+
+                String previousField = typeHeaders.put(fieldAnnotation.pos(), header);
                 if (previousField != null) {
                     throw new IllegalArgumentException(String.format("multiple fields for position %d defined! Fields: %s! Type: %s", fieldAnnotation.pos(),
                                                                                                                                       previousField + ", " + field.getName(),

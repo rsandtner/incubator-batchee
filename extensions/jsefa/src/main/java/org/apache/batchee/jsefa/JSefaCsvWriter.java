@@ -90,7 +90,7 @@ public class JSefaCsvWriter extends JSefaWriter {
 
     @Inject
     @BatchProperty
-    @Documentation("Should the header be calculated from @Header or field names if @Header is not present on fields annotated with @CsvField. " +
+    @Documentation("Should the header be calculated from @Header or fieldnames if @Header is not present on fields annotated with @CsvField. " +
                    "This property will be ignored if the header property is set.")
     private Boolean writeHeader;
 

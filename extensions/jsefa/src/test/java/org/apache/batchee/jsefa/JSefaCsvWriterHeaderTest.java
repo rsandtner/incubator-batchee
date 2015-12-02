@@ -21,6 +21,7 @@ import org.apache.batchee.jsefa.bean.Address;
 import org.apache.batchee.jsefa.bean.Person;
 import org.apache.batchee.jsefa.bean.PersonWithAddress;
 import org.apache.batchee.jsefa.bean.Record;
+import org.apache.batchee.jsefa.bean.RecordWithHeader;
 import org.apache.batchee.jsefa.util.CsvUtil;
 import org.apache.batchee.jsefa.util.IOs;
 import org.apache.batchee.util.Batches;
@@ -76,6 +77,15 @@ public class JSefaCsvWriterHeaderTest {
                                   "jsefa-csv-writer-header-fromFieldsMoreObjects",
                                   "firstName;lastName;street;zip;city",
                                   MoreObjectReader.STORAGE);
+    }
+
+    @Test
+    public void testWriteHeaderFromHeaderAnnotation() {
+
+        startBatchAndAssertResult("target/work/JsefaCsvWriterHeaderFromAnnotation.csv",
+                                  "jsefa-csv-writer-header-fromHeaderAnnotation",
+                                  "VALUE_HEADER;ANOTHER_VALUE_HEADER",
+                                  HeaderAnnotationReader.STORAGE);
     }
 
 
@@ -213,6 +223,27 @@ public class JSefaCsvWriterHeaderTest {
             }
 
             return item;
+        }
+    }
+
+    public static class HeaderAnnotationReader extends AbstractItemReader {
+
+        static final List<RecordWithHeader> STORAGE = new ArrayList<RecordWithHeader>(5);
+
+
+        private int count;
+
+        @Override
+        public Object readItem() throws Exception {
+
+            if (count++ < 5) {
+
+                RecordWithHeader record = new RecordWithHeader(count);
+                STORAGE.add(record);
+                return record;
+            }
+
+            return null;
         }
     }
 }
