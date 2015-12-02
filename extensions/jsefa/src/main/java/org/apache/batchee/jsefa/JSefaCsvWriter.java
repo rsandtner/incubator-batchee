@@ -85,10 +85,13 @@ public class JSefaCsvWriter extends JSefaWriter {
 
     @Inject
     @BatchProperty
+    @Documentation("the header for the file")
     private String header;
 
     @Inject
     @BatchProperty
+    @Documentation("Should the header be calculated from @Header or field names if @Header is not present on fields annotated with @CsvField. " +
+                   "This property will be ignored if the header property is set.")
     private Boolean writeHeader;
 
     @Override
@@ -119,8 +122,9 @@ public class JSefaCsvWriter extends JSefaWriter {
             delimiter = CsvLowLevelConfiguration.Defaults.DEFAULT_FIELD_DELIMITER;
         }
 
-        // writeHeader can not be null since it gets resolved via Boolan.valueOf() and
-        // we always get true, false or an exception
+        //X TODO align behavoir of DefaultBAtchArtifactFactory and CDIBatchArtifactFactory?
+        //X      DefaultBatchArtifactFactory only resolves properties which are set, while
+        //X      CDIBatchArtifactFactory resolves every field...
         if (header == null && writeHeader != null && writeHeader) {
             Class<?>[] classes = JsefaConfigurations.createObjectTypes(objectTypes);
 

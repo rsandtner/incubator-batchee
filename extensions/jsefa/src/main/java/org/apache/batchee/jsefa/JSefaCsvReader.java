@@ -84,10 +84,12 @@ public class JSefaCsvReader extends JSefaReader {
 
     @Inject
     @BatchProperty
+    @Documentation("should the header be ignored")
     private Boolean ignoreHeader;
 
     @Inject
-    @BatchProperty
+    @BatchProperty()
+    @Documentation("number of header lines")
     private Integer headerSize;
 
 
